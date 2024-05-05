@@ -1,0 +1,40 @@
+{% extends "university/base.html" %}
+
+{% block body %}
+
+<main class="container mb-4">
+    <div class="col-md-12">
+        <h2 class="display-5">Расписание занятий</h2>
+        <p class="mb-4">{{date_start|date}} - {{date_end|date}} (текущая неделя)</p>
+
+        <ul class="list-group list-group-horizontal position-relative overflow-auto mt-4 pb-4">
+            {% for f in filters %}
+            <li class="list-inline-item">
+                <a class="btn btn-outline-secondary rounded-pill {% if f.is_active %}active{% endif %}"
+                   href="{{url}}?filter={{f.name}}">{{f.name}}</a>
+            </li>
+            {% endfor %}
+        </ul>
+
+
+        <div class="row g-4">
+            {% for s in data %}
+            <div class="col-12 col-md-6 pb-4 group-schedule border-bottom">
+                <h3>{{s.group}}</h3>
+                <p>{{s.date}}</p>
+
+                <ol class="mb-2">
+                    {% for sbj in s.schedule_subject_model_set.all %}
+                    <li>{{sbj.subject}}, {{sbj.location}} каб.</li>
+                    {% endfor %}
+                </ol>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% if not data %}
+        <span>Нет информации о расписании на сегодня ({{date_start|date}})</span>
+        {% endif %}
+    </div>
+</main>
+{% endblock %}

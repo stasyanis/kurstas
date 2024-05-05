@@ -1,0 +1,11 @@
+{% extends "university/base.html" %}
+
+{% block body %}
+<main class="container mb-4">
+    <article class="blog-post">
+        <h2 class="display-5 mb-1">{{data.title}}</h2>
+        <p class="blog-post-meta">{{data.date}} by {{data.author}}</p>
+        {{data.body}}
+    </article>
+</main>
+{% endblock %}

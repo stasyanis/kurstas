@@ -1,0 +1,30 @@
+{% extends "university/base.html" %}
+
+{% block body %}
+<main class="container mb-4">
+    <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
+        <div class="col-lg-6 px-0">
+            <h1 class="display-4 fst-italic">Главные новости</h1>
+            <p class="lead my-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet possimus aut rem
+                at laborum sint? Accusamus assumenda.</p>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="col-md-12">
+        {% include 'university/pagination.html' %}
+
+        {% for b in data %}
+        <article class="blog-post">
+            <h2 class="display-5 mb-1">{{b.title}}</h2>
+            <p class="blog-post-meta">{{b.date}} by {{b.author}}</p>
+
+            {{b.body | linebreaks|truncatechars:250}}
+            <a href="{% url 'blog_detail' b.slug %}">Читать далее</a>
+        </article>
+        {% endfor %}
+    </div>
+
+</main>
+{% endblock %}

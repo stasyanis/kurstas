@@ -1,0 +1,26 @@
+{% extends "university/base.html" %}
+{% load static %}
+
+{% block body %}
+<main class="container mb-4">
+    <div class="col-md-12">
+        <h2 class="display-5 mb-4">{{data.fullname}}</h2>
+
+        <div class="row mb-4">
+            {% if data.image %}
+            <div class="col-3">
+                <img class="img-fluid profile-image rounded"
+                     src="/media/{{data.image}}">
+            </div>
+            {% endif %}
+
+            <div class="col">{{data.head_text | linebreaks}}</div>
+        </div>
+
+        <div class="detail-meta">{{data.description | linebreaks}}</div>
+
+
+    </div>
+
+</main>
+{% endblock %}

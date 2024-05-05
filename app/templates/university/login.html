@@ -1,0 +1,26 @@
+{% extends "university/base.html" %}
+
+{% block body %}
+
+{% load crispy_forms_tags %}
+
+<div class="container py-5 col-12 col-md-3 my-auto">
+    <h1>Login</h1>
+    {% include "university/messages.html" %}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button class="btn btn-primary w-100" type="submit">Войти</button>
+    </form>
+<!--User: user/QWErty123456!-->
+<!--        Admin: admin/admin-->
+    <p class="mt-3"></p>
+    <p></p>
+
+    <p class="small text-secondary text-center mt-4">
+        Если у вас нет учетной записи,
+        пройдите этап <i><a href="{% url 'register' %}">регистрации</a></i>.
+    </p>
+</div>
+
+{% endblock %}

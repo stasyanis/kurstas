@@ -1,0 +1,21 @@
+{% extends "university/base.html" %}
+
+{% block body %}
+
+{% load crispy_forms_tags %}
+
+<div class="container py-5 container py-5 col-12 col-md-3 my-auto">
+    <h1>Register</h1>
+    {% include "university/messages.html" %}
+    <form method="POST">
+        {% csrf_token %}
+        {{ register_form|crispy }}
+        <button class="btn btn-primary w-100" type="submit">Зарегистрироваться</button>
+    </form>
+    <p class="small text-secondary text-center mt-4">
+        Если у вас уже есть учетная запись, <i><a href="/login">
+        войдите</a></i> в систему.
+    </p>
+</div>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "university/base.html" %}
+
+{% block body %}
+<main class="container">
+    <div class="col-md-12">
+        <h2 class="display-5 mb-4">Преподаватели</h2>
+
+        {% include 'university/pagination.html' %}
+
+        <div class="list-group mb-4">
+            {% for t in data %}
+            <a href="{% url 'teacher' t.slug %}" class="list-group-item list-group-item-action py-3">
+                <h5 class="mb-1">{{t.fullname}}</h5>
+                <p class="mb-1">{{t.job}}</p>
+                <small>{{t.short_description}}</small>
+            </a>
+            {% endfor %}
+        </div>
+
+
+    </div>
+
+</main>
+{% endblock %}

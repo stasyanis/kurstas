@@ -1,0 +1,38 @@
+{% extends "university/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+<main class="container mb-4">
+    <h2 class="display-5 mb-1">Личный кабинет ({{user.username}})</h2>
+
+    <div class="row mt-0 g-4">
+        <div class="col-12 col-md-8">
+            <h3>Редактирование данных</h3>
+
+            {% include 'university/messages.html' %}
+            <form method="POST">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button class="btn btn-primary" type="submit">Сохранить</button>
+            </form>
+        </div>
+
+        <div class="col-12 col-md-4">
+            <h3 class="mb-4">Расписание на неделю</h3>
+
+            {% for s in data %}
+            <div class="group-schedule border-bottom pb-3 mb-4">
+                <h3>{{s.group}}</h3>
+                <p>{{s.date}}</p>
+
+                <ol class="mb-2">
+                    {% for sbj in s.schedule_subject_model_set.all %}
+                    <li>{{sbj.subject}}, {{sbj.location}} каб.</li>
+                    {% endfor %}
+                </ol>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</main>
+{% endblock %}
